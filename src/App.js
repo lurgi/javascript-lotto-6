@@ -9,10 +9,9 @@ class App {
     this.#lottoControler = new LottoControler();
 
     await this.playAmountMoney();
-
     this.printLottoNumbers();
-
     await this.playWinNumbers();
+    await this.playBonusNumber();
   }
 
   async playAmountMoney() {
@@ -21,6 +20,7 @@ class App {
       this.#lottoControler.createLottos(AMOUNT_MONEY);
     } catch (error) {
       OutputView.print(error.message);
+      await this.playAmountMoney();
     }
   }
 
@@ -35,6 +35,17 @@ class App {
       this.#lottoControler.setWinNumbers(WIN_NUMBERS);
     } catch (error) {
       OutputView.print(error.message);
+      await this.playWinNumbers();
+    }
+  }
+
+  async playBonusNumber() {
+    try {
+      const BONUS_NUMBER = await InputView.readBonusNumbers();
+      this.#lottoControler.setBonusNumber(BONUS_NUMBER);
+    } catch (error) {
+      OutputView.print(error.message);
+      await this.playBonusNumber();
     }
   }
 }

@@ -10,6 +10,8 @@ class LottoControler {
 
   #winNumbers;
 
+  #bonusNumber;
+
   getLottos() {
     return [...this.#lottos];
   }
@@ -37,9 +39,8 @@ class LottoControler {
   }
 
   setWinNumbers(winNumbers) {
-    const WIN_NUMBERS = winNumbers.split(',').map(Number);
-    this.#validWinNumbers(WIN_NUMBERS);
-    this.#winNumbers = WIN_NUMBERS;
+    this.#validWinNumbers(winNumbers);
+    this.#winNumbers = winNumbers;
   }
 
   #validWinNumbers(winNumbers) {
@@ -54,6 +55,23 @@ class LottoControler {
         throw new Error('[ERROR]');
       }
     });
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.#validBonusNumber(bonusNumber);
+    this.#bonusNumber = bonusNumber;
+  }
+
+  #validBonusNumber(bonusNumber) {
+    if (Number.isNaN(bonusNumber)) {
+      throw new Error('[ERROR]');
+    }
+    if (this.#winNumbers.includes(bonusNumber)) {
+      throw new Error('[ERROR]');
+    }
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error('[ERROR]');
+    }
   }
 }
 
