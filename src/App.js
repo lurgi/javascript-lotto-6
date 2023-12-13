@@ -9,10 +9,10 @@ class App {
     this.#lottoControler = new LottoControler();
 
     await this.playAmountMoney();
-    this.printLottoNumbers();
+    this.handleLottoInfo();
     await this.playWinNumbers();
     await this.playBonusNumber();
-    this.printLottoResults();
+    this.handleLottoResults();
   }
 
   async playAmountMoney() {
@@ -25,7 +25,7 @@ class App {
     }
   }
 
-  printLottoNumbers() {
+  handleLottoInfo() {
     const LOTTOS = this.#lottoControler.getLottos();
     OutputView.printLottos(LOTTOS);
   }
@@ -50,13 +50,14 @@ class App {
     }
   }
 
-  printLottoResults() {
+  handleLottoResults() {
     /**
      * 당첨 결과 출력
      *
      * 수익률 출력
      */
     const LOTTO_RESULTS = this.#lottoControler.getLottoResults();
+    OutputView.printLottoResults(LOTTO_RESULTS);
   }
 }
 
