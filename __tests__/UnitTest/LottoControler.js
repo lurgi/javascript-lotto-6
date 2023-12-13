@@ -20,7 +20,7 @@ describe('LottoControler 테스트', () => {
 
   test.each([NaN, 0, 46, 4])('보너스 번호 예외 처리 테스트', (number) => {
     const LOTTO_CONTROLER = new LottoControler();
-    LOTTO_CONTROLER.setWinNumbers('1,2,3,4,5,6');
+    LOTTO_CONTROLER.setWinNumbers([1, 2, 3, 4, 5, 6]);
     expect(() => LOTTO_CONTROLER.setBonusNumber(number)).toThrow('[ERROR]');
   });
 });

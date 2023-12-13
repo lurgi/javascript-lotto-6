@@ -12,6 +12,7 @@ class App {
     this.printLottoNumbers();
     await this.playWinNumbers();
     await this.playBonusNumber();
+    this.printLottoResults();
   }
 
   async playAmountMoney() {
@@ -47,6 +48,15 @@ class App {
       OutputView.print(error.message);
       await this.playBonusNumber();
     }
+  }
+
+  printLottoResults() {
+    /**
+     * 당첨 결과 출력
+     *
+     * 수익률 출력
+     */
+    const LOTTO_RESULTS = this.#lottoControler.getLottoResults();
   }
 }
 

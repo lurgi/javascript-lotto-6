@@ -73,6 +73,12 @@ class LottoControler {
       throw new Error('[ERROR]');
     }
   }
+
+  getLottoResults() {
+    return this.#lottos.map((lotto) =>
+      lotto.getLottoRank(this.#winNumbers, this.#bonusNumber),
+    );
+  }
 }
 
 export default LottoControler;
