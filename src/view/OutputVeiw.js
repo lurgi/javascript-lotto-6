@@ -5,7 +5,11 @@ const OutputView = Object.freeze({
     MissionUtils.Console.print(string);
   },
 
-  printLottos() {},
+  printLottos(lottos) {
+    lottos.forEach((lotto) => {
+      this.print(`[${lotto.getNumbers().join(',')}]`);
+    });
+  },
 });
 
 export default OutputView;

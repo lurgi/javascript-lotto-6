@@ -10,8 +10,7 @@ class App {
 
     await this.playAmountMoney();
 
-    const LOTTOS = this.#lottoControler.getLottos();
-    OutputView.printLottos(LOTTOS);
+    this.printLottoNumbers();
 
     await this.playWinNumbers();
   }
@@ -23,6 +22,11 @@ class App {
     } catch (error) {
       OutputView.print(error.message);
     }
+  }
+
+  printLottoNumbers() {
+    const LOTTOS = this.#lottoControler.getLottos();
+    OutputView.printLottos(LOTTOS);
   }
 
   async playWinNumbers() {
