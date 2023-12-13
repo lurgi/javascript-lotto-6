@@ -1,4 +1,8 @@
+import LottoControler from './model/LottoControler';
+
 class App {
+  #lottoControler;
+
   async play() {
     /**
      * LottoControler 생성
@@ -6,6 +10,7 @@ class App {
      * 구입 금액 만큼 로또 생성
      * LottoControler에 로또 할당
      */
+    this.#lottoControler = new LottoControler();
   }
 }
 
