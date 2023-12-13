@@ -1,7 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const INPUT_MESSAGES = {
-  money: '구입금액을 입력해 주세요.',
+  money: '\n구입금액을 입력해 주세요.',
+  winNumbers: '\n당첨 번호를 입력해 주세요.',
 };
 
 const ERROR_MESSAGES = {
@@ -16,7 +17,12 @@ const InputView = Object.freeze({
     return Number(INPUT);
   },
 
-  async readWinNumbers() {},
+  async readWinNumbers() {
+    const INPUT = await this.readLineAsync(INPUT_MESSAGES.winNumbers);
+    this.inputValid(INPUT);
+
+    return INPUT;
+  },
 
   inputValid(input) {
     if (!input) throw new Error(ERROR_MESSAGES.notValid);

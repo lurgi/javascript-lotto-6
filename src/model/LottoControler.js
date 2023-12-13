@@ -10,9 +10,13 @@ class LottoControler {
 
   #winNumbers;
 
+  getLottos() {
+    return [...this.#lottos];
+  }
+
   createLottos(money) {
     this.#validMoney(money);
-    const LOTTO_CNT = money / CONSTANT.lottoPrice;
+    const LOTTO_CNT = Math.floor(money / CONSTANT.lottoPrice);
     this.#lottos = Array.from({ length: LOTTO_CNT }, () => {
       const RANDOM_NUMBERS = this.#randomeSixNumber();
       return new Lotto(RANDOM_NUMBERS);
@@ -29,7 +33,7 @@ class LottoControler {
   }
 
   #randomeSixNumber() {
-    MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   setWinNumbers(winNumbers) {

@@ -9,6 +9,10 @@ class App {
     this.#lottoControler = new LottoControler();
 
     await this.playAmountMoney();
+
+    const LOTTOS = this.#lottoControler.getLottos();
+    OutputView.printLottos(LOTTOS);
+
     await this.playWinNumbers();
   }
 
