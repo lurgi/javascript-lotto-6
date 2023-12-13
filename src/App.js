@@ -13,6 +13,7 @@ class App {
     await this.playWinNumbers();
     await this.playBonusNumber();
     this.handleLottoResults();
+    this.handleRateOfIncome();
   }
 
   async playAmountMoney() {
@@ -51,13 +52,13 @@ class App {
   }
 
   handleLottoResults() {
-    /**
-     * 당첨 결과 출력
-     *
-     * 수익률 출력
-     */
     const LOTTO_RESULTS = this.#lottoControler.getLottoResults();
     OutputView.printLottoResults(LOTTO_RESULTS);
+  }
+
+  handleRateOfIncome() {
+    const RATE_INCOME = this.#lottoControler.getRateIncome();
+    OutputView.printRateIncome(RATE_INCOME);
   }
 }
 

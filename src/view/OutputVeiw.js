@@ -9,6 +9,7 @@ const OUTPUT_MESSAGES = {
     4: `4개 일치 (50,000원) - ${num}개`,
     5: ` 3개 일치 (5,000원) - ${num}개`,
   }),
+  rateIncome: (income) => `총 수익률은 ${income}%입니다.`,
 };
 
 const OutputView = Object.freeze({
@@ -38,6 +39,15 @@ const OutputView = Object.freeze({
       }
     });
     return RANK_NUMBERS;
+  },
+
+  printRateIncome(RATE_NUMBER) {
+    const STRING = String(RATE_NUMBER).split('');
+    if (!STRING.includes('.')) {
+      STRING.push('.');
+      STRING.push('0');
+    }
+    this.print(OUTPUT_MESSAGES.rateIncome(STRING.join('')));
   },
 });
 

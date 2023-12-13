@@ -5,6 +5,14 @@ const CONSTANT = Object.freeze({
   lottoPrice: 1_000,
 });
 
+const RANK_PRICE = Object.freeze({
+  1: 2_000_000_000,
+  2: 30_000_000,
+  3: 1_500_000,
+  4: 50_000,
+  5: 5_000,
+});
+
 class LottoControler {
   #lottos;
 
@@ -78,6 +86,18 @@ class LottoControler {
     return this.#lottos.map((lotto) =>
       lotto.getLottoRank(this.#winNumbers, this.#bonusNumber),
     );
+  }
+
+  getRateIncome() {
+    const LOTTO_RESULTS = this.getLottoResults();
+    let income = 0;
+    LOTTO_RESULTS.forEach((rank) => {
+      if (RANK_PRICE[rank]) income += RANK_PRICE[rank];
+    });
+    const INPUT_MONEY = this.#lottos.length * CONSTANT.lottoPrice;
+    const RATE_NUMBER = Math.round((income / INPUT_MONEY) * 1000) / 10;
+
+    return RATE_NUMBER;
   }
 }
 
