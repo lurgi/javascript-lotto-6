@@ -8,8 +8,10 @@ const CONSTANT = Object.freeze({
 class LottoControler {
   #lottos;
 
+  #winNumbers;
+
   createLottos(money) {
-    this.#moneyValid(money);
+    this.#validMoney(money);
     const LOTTO_CNT = money / CONSTANT.lottoPrice;
     this.#lottos = Array.from({ length: LOTTO_CNT }, () => {
       const RANDOM_NUMBERS = this.#randomeSixNumber();
@@ -17,7 +19,7 @@ class LottoControler {
     });
   }
 
-  #moneyValid(money) {
+  #validMoney(money) {
     if (money < CONSTANT.lottoPrice) {
       throw new Error('[ERROR]');
     }
@@ -28,6 +30,26 @@ class LottoControler {
 
   #randomeSixNumber() {
     MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  setWinNumbers(winNumbers) {
+    const WIN_NUMBERS = winNumbers.split(',').map(Number);
+    this.#validWinNumbers(WIN_NUMBERS);
+    this.#winNumbers = WIN_NUMBERS;
+  }
+
+  #validWinNumbers(winNumbers) {
+    if (new Set(winNumbers).size !== 6 || winNumbers.length !== 6) {
+      throw new Error('[ERROR]');
+    }
+    winNumbers.forEach((number) => {
+      if (Number.isNaN(number)) {
+        throw new Error('[ERROR]');
+      }
+      if (number < 1 || number > 45) {
+        throw new Error('[ERROR]');
+      }
+    });
   }
 }
 

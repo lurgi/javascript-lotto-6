@@ -9,12 +9,22 @@ class App {
     this.#lottoControler = new LottoControler();
 
     await this.playAmountMoney();
+    await this.playWinNumbers();
   }
 
   async playAmountMoney() {
     try {
       const AMOUNT_MONEY = await InputView.readAmountMoney();
       this.#lottoControler.createLottos(AMOUNT_MONEY);
+    } catch (error) {
+      OutputView.print(error.message);
+    }
+  }
+
+  async playWinNumbers() {
+    try {
+      const WIN_NUMBERS = await InputView.readWinNumbers();
+      this.#lottoControler.setWinNumbers(WIN_NUMBERS);
     } catch (error) {
       OutputView.print(error.message);
     }

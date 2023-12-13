@@ -16,6 +16,8 @@ const InputView = Object.freeze({
     return Number(INPUT);
   },
 
+  async readWinNumbers() {},
+
   inputValid(input) {
     if (!input) throw new Error(ERROR_MESSAGES.notValid);
   },
